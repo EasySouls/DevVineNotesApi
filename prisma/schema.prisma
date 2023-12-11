@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Enemy {
+  id         Int        @id @default(autoincrement())
+  name       String     @unique
+  powerGrade PowerGrade
+  type       Type
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+enum PowerGrade {
+  FOURTH
+  THIRD
+  SECOND
+  FIRST
+  SPECIAL
+}
+
+enum Type {
+  COMMON
+  BOSS
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  role      Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Todo      Todo[]
+}
+
+enum Role {
+  USER
+  MEMBER
+  ADMIN
+}
+
+model Todo {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String
+  isCompleted Boolean  @default(false)
+  author      User?    @relation(fields: [authorId], references: [id])
+  authorId    Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
