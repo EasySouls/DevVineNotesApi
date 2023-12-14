@@ -6,6 +6,7 @@ const userData: Prisma.UserCreateInput[] = [
   {
     name: 'Alice',
     email: 'alice@prisma.io',
+    password: 'lajdfklahfauig',
     role: 'USER',
     todos: {
       create: [
@@ -20,6 +21,7 @@ const userData: Prisma.UserCreateInput[] = [
   {
     name: 'Nilu',
     email: 'nilu@prisma.io',
+    password: '78632bkehaso9id',
     role: 'MEMBER',
     todos: {
       create: [
@@ -33,6 +35,7 @@ const userData: Prisma.UserCreateInput[] = [
   {
     name: 'Mahmoud',
     email: 'mahmoud@prisma.io',
+    password: 'lnafsi7z3ihbnawldk',
     role: 'ADMIN',
     todos: {
       create: [

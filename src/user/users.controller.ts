@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 
 @Controller('users')
-export class UserController {
+export class UsersController {
   @Get() // GET /users
   findAll() {
     return [];
