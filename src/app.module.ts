@@ -1,19 +1,20 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserController } from './user/user.controller';
-import { UserService } from './user/user.service';
-import { UserModule } from './user/user.module';
+import { UsersController } from './user/users.controller';
+import { UsersService } from './user/users.service';
+import { UsersModule } from './user/users.module';
 import { EnemyModule } from './enemy/enemy.module';
 import { DatabaseModule } from './database/database.module';
 import { TodosModule } from './todos/todos.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { LoggerModule } from './logger/logger.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    UserModule,
+    UsersModule,
     EnemyModule,
     DatabaseModule,
     TodosModule,
@@ -30,11 +31,12 @@ import { LoggerModule } from './logger/logger.module';
       },
     ]),
     LoggerModule,
+    AuthModule,
   ],
-  controllers: [AppController, UserController],
+  controllers: [AppController, UsersController],
   providers: [
     AppService,
-    UserService,
+    UsersService,
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
